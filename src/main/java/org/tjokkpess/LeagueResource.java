@@ -1,6 +1,7 @@
 package org.tjokkpess;
 
-import org.tjokkpess.dao.PlayerRepository;
+import org.tjokkpess.dao.LeagueRepository;
+import org.tjokkpess.model.League;
 import org.tjokkpess.model.Player;
 
 import javax.inject.Inject;
@@ -10,27 +11,20 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 
-@Path("/api/v1/players")
-public class PlayerResource {
+@Path("/api/v1/leagues")
+public class LeagueResource {
 
     @Inject
-    PlayerRepository playerRepository;
+    LeagueRepository leagueRepository;
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Player> getAll() {
-        return playerRepository.listAll();
+    public List<League> getAll() {
+        return leagueRepository.listAll();
     }
 
     @POST
-    public Response create(Player player){
-        playerRepository.persist(player);
-        return Response.accepted().build();
-
-    }
-
-    @PUT
-    public Response update(Player player){
-        playerRepository.update(player);
+    public Response create(League league){
+        leagueRepository.persist(league);
         return Response.accepted().build();
 
     }
