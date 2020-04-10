@@ -1,10 +1,6 @@
 package org.tjokkpess;
 
 import org.bson.types.ObjectId;
-import org.tjokkpess.dao.LeagueRepository;
-import org.tjokkpess.dao.PlayerRepository;
-import org.tjokkpess.dao.SeasonRepository;
-import org.tjokkpess.dao.TeamRepository;
 import org.tjokkpess.model.*;
 
 import javax.inject.Inject;

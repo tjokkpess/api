@@ -2,6 +2,7 @@ package org.tjokkpess.model;
 
 
 import io.quarkus.mongodb.panache.MongoEntity;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import org.bson.types.ObjectId;
 
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MongoEntity(collection="League")
-public class League {
+public class League extends PanacheMongoEntity {
 
 
     @Id

@@ -2,6 +2,8 @@ package org.tjokkpess.model;
 
 
 import io.quarkus.mongodb.panache.MongoEntity;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MongoEntity(collection="Season")
-public class Season {
+public class Season extends PanacheMongoEntity {
 
 
     @Id
@@ -29,5 +31,10 @@ public class Season {
         this.teams = teams;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public static List<Season> find(List<ObjectId> list){
+        Document basicDBObject = new Document("_id",new Document("$in", list));
+        return find(basicDBObject).list();
     }
 }
