@@ -17,9 +17,7 @@ public class Season {
     @Id
     @GeneratedValue
     public ObjectId id;
-    public League league = new League();
-    public int numberOfTeams;
-    public List<Team> teams = new ArrayList<Team>();
+    public List<ObjectId> teams = new ArrayList<>();
 
     public LocalDate startDate;
     public LocalDate endDate;
@@ -27,9 +25,7 @@ public class Season {
     public Season() {
     }
 
-    public Season(League league, int numberOfTeams, List<Team> teams, LocalDate startDate, LocalDate endDate) {
-        this.league = league;
-        this.numberOfTeams = numberOfTeams;
+    public Season( List<ObjectId> teams, LocalDate startDate, LocalDate endDate) {
         this.teams = teams;
         this.startDate = startDate;
         this.endDate = endDate;

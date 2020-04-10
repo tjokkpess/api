@@ -29,4 +29,8 @@ public class Team {
         this.shortName = shortName;
         this.fullName = fullName;
     }
+
+    public ObjectId getId() {
+        return id;
+    }
 }

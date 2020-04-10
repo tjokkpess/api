@@ -6,6 +6,8 @@ import org.bson.types.ObjectId;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 @MongoEntity(collection="League")
 public class League {
@@ -16,6 +18,7 @@ public class League {
     public ObjectId id;
     public String shortName;
     public String fullName;
+    public List<ObjectId> seasons = new ArrayList<>();
 
     public League() {
     }

@@ -29,13 +29,13 @@ public class TeamResource {
     }
 
     @GET
-    @Path("{id}")
+    @Path("/{id}")
     public Team getTeam(@PathParam("id") String id) {
         return teamRepository.findById(new ObjectId(id));
     }
 
     @GET
-    @Path("{id}/players")
+    @Path("/{id}/players")
     public List<Player> getPlayers(@PathParam("id") String id) {
         Team team = teamRepository.findById(new ObjectId(id));
         List<ObjectId> players = team.players;
@@ -44,7 +44,7 @@ public class TeamResource {
     }
 
     @PUT
-    @Path("{id}/players")
+    @Path("/{id}/players")
     public Response addPlayersToTeam(@PathParam("id") String id, Player player) {
         Team team = teamRepository.findById(new ObjectId(id));
         team.players.add(player.id);

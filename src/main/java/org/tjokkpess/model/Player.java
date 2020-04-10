@@ -2,7 +2,6 @@ package org.tjokkpess.model;
 
 
 import io.quarkus.mongodb.panache.MongoEntity;
-import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ public class Player {
     public Player() {
     }
 
-    public Player(String firstName, String lastName, PlayerPosition playerPosition, int price, int shirtNumber) {
+    public Player(String firstName, String lastName, PlayerPosition playerPosition, int price) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.playerPosition = playerPosition;
