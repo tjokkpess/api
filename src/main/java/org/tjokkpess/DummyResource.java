@@ -3,7 +3,6 @@ package org.tjokkpess;
 import org.bson.types.ObjectId;
 import org.tjokkpess.model.*;
 
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,15 +17,6 @@ import java.util.stream.Collectors;
 @Path("/api/v1/dummy")
 public class DummyResource {
 
-    @Inject
-    PlayerRepository playerRepository;
-    @Inject
-    TeamRepository teamRepository;
-    @Inject
-    SeasonRepository seasonRepository;
-
-    @Inject
-    LeagueRepository leagueRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -36,12 +26,12 @@ public class DummyResource {
         addPlayersToTeam(players, teams);
 
         League league = new League("PL", "Premier Leageu");
-        leagueRepository.persist(league);
+        League.persist(league);
         List<ObjectId> teamIds = teams.stream().map(Team::getId).collect(Collectors.toList());
         Season season = new Season(teamIds, LocalDate.of(2019,1,1),LocalDate.of(2020,1,1));
-        seasonRepository.persist(season);
+        Season.persistAndGenerateLeagueRounds(season);
         league.seasons.add(season.id);
-        leagueRepository.update(league);
+        League.update(league);
 
 
         return Response.ok().build();
@@ -53,11 +43,11 @@ public class DummyResource {
         teams.get(2).players.add(players.get(2).id);
         teams.get(3).players.add(players.get(3).id);
         teams.get(4).players.add(players.get(4).id);
-        teamRepository.update(teams.get(0));
-        teamRepository.update(teams.get(1));
-        teamRepository.update(teams.get(2));
-        teamRepository.update(teams.get(3));
-        teamRepository.update(teams.get(4));
+        Team.update(teams.get(0));
+        Team.update(teams.get(1));
+        Team.update(teams.get(2));
+        Team.update(teams.get(3));
+        Team.update(teams.get(4));
     }
 
     private ArrayList<Team> createTeams() {
@@ -66,11 +56,11 @@ public class DummyResource {
         Team team3 =new Team("West Ham", "West Ham");
         Team team4 =new Team("Tottenham", "Tottenham");
         Team team5 =new Team("Chelsea", "Chelsea");
-        teamRepository.persist(team1);
-        teamRepository.persist(team2);
-        teamRepository.persist(team3);
-        teamRepository.persist(team4);
-        teamRepository.persist(team5);
+        Team.persist(team1);
+        Team.persist(team2);
+        Team.persist(team3);
+        Team.persist(team4);
+        Team.persist(team5);
         ArrayList<Team> teams = new ArrayList<>();
         teams.add(team1);
         teams.add(team2);
@@ -88,11 +78,11 @@ public class DummyResource {
         Player player3 = new Player("Lana", "Rød", PlayerPosition.GOALKEEPER, 5000);
         Player player4 = new Player("Thea", "Lilla", PlayerPosition.STRIKER, 5000);
         Player player5 = new Player("Elin", "Grønn", PlayerPosition.MIDFIELDER, 5000);
-        playerRepository.persist(player1);
-        playerRepository.persist(player2);
-        playerRepository.persist(player3);
-        playerRepository.persist(player4);
-        playerRepository.persist(player5);
+        Player.persist(player1);
+        Player.persist(player2);
+        Player.persist(player3);
+        Player.persist(player4);
+        Player.persist(player5);
         ArrayList<Player> players = new ArrayList<>();
         players.add(player1);
         players.add(player2);

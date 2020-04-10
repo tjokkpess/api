@@ -36,6 +36,7 @@ public class LeagueResource {
     @Path("/{id}/seasons")
     public Response createSeason(@PathParam("id") String leagueId, Season season){
         League league = League.findById(new ObjectId(leagueId));
+
         Season.persist(season);
         league.seasons.add(season.id);
         League.update(league);
