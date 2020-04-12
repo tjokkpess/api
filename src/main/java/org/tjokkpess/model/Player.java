@@ -17,18 +17,19 @@ public class Player  extends PanacheMongoEntity {
     @Id
     @GeneratedValue
     public ObjectId id;
-    public ObjectId teamId;
 
     public String name;
     public PlayerPosition playerPosition = PlayerPosition.UNKNOWN;
     public int price;
 
+    public Player() {
+    }
 
-    public Player(String name, PlayerPosition playerPosition, int price, ObjectId teamId) {
+    public Player(String name, PlayerPosition playerPosition, int price) {
         this.name = name;
         this.playerPosition = playerPosition;
         this.price = price;
-        this.teamId = teamId;
+
     }
 
     public static List<Player> find(List<ObjectId> list){

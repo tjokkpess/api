@@ -41,7 +41,11 @@ public class ImportResource {
         squad.data.forEach(statsFCSquad -> {
             Team team = Team.findByName(statsFCSquad.team.name);
             statsFCSquad.players.forEach(statsFCPlayer -> {
-                Player.persist(new Player(statsFCPlayer.name,StatsFCMapper.mapFromStatsFC(statsFCPlayer.position),0, team.id));
+                Player player = new Player(statsFCPlayer.name, StatsFCMapper.mapFromStatsFC(statsFCPlayer.position), 0);
+                Player.persist(player);
+                team.players.add(player.id);
+                Team.update(team);
+
             });
         });
 
