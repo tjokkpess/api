@@ -3,7 +3,6 @@ package org.tjokkpess.resources;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.tjokkpess.client.statsfc.*;
 import org.tjokkpess.model.Player;
-import org.tjokkpess.model.PlayerPosition;
 import org.tjokkpess.model.Team;
 
 import javax.inject.Inject;
@@ -42,7 +41,7 @@ public class ImportResource {
         squad.data.forEach(statsFCSquad -> {
             Team team = Team.findByName(statsFCSquad.team.name);
             statsFCSquad.players.forEach(statsFCPlayer -> {
-                Player.persist(new Player(statsFCPlayer.name,PlayerPosition.mapFromStatsFC(statsFCPlayer.position),0, team.id));
+                Player.persist(new Player(statsFCPlayer.name,StatsFCMapper.mapFromStatsFC(statsFCPlayer.position),0, team.id));
             });
         });
 
