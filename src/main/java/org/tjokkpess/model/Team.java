@@ -3,6 +3,7 @@ package org.tjokkpess.model;
 
 import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import javax.persistence.GeneratedValue;
@@ -34,4 +35,10 @@ public class Team extends PanacheMongoEntity {
     public ObjectId getId() {
         return id;
     }
+
+    public static Team findByName(String name){
+        Document basicDBObject = new Document("fullName",new Document("$eq", name));
+        return find(basicDBObject).firstResult();
+    }
+
 }

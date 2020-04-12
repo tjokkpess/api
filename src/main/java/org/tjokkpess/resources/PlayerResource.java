@@ -1,4 +1,4 @@
-package org.tjokkpess;
+package org.tjokkpess.resources;
 
 import org.tjokkpess.model.Player;
 

@@ -58,6 +58,11 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.4.13.Final</version>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-client</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
